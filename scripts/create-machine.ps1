@@ -166,10 +166,10 @@ function updateConfig($daemonJson, $serverCertsPath, $enableLCOW, $experimental)
   }
   $config = $config | Add-Member(@{ `
     hosts = @("tcp://0.0.0.0:2376", "npipe://"); `
-    tlsverify = $true; `
-    tlscacert = "$serverCertsPath\ca.pem"; `
-    tlscert = "$serverCertsPath\server-cert.pem"; `
-    tlskey = "$serverCertsPath\server-key.pem"; `
+    tlsverify = $false; `
+#     tlscacert = "$serverCertsPath\ca.pem"; `
+#     tlscert = "$serverCertsPath\server-cert.pem"; `
+#     tlskey = "$serverCertsPath\server-key.pem"; `
     experimental = $experimental `
     }) -Force -PassThru
 
@@ -189,7 +189,7 @@ function createContext ($machineName, $machineHome, $contextMetaPath, $contextCe
   "Endpoints": {
     "docker": {
       "Host": "tcp://${machineIp}:2376",
-      "SkipTLSVerify": false
+      "SkipTLSVerify": true
     }
   }
 }
@@ -239,7 +239,7 @@ function createMachineConfig ($machineName, $machineHome, $machinePath, $machine
             "LogLevel": "",
             "StorageDriver": "",
             "SelinuxEnabled": false,
-            "TlsVerify": true,
+            "TlsVerify": false,
             "RegistryMirror": [],
             "InstallURL": "https://get.docker.com"
         },
