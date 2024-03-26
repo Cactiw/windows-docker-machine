@@ -98,8 +98,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |v, override|
     v.gui = false
-    v.memory = 8192
-    v.cpus = 8
+    v.memory = 14192
+    v.cpus = 14
     v.linked_clone = true
     # Enable Nested Hardware Virtualisation - requires VirtualBox 6
     v.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
